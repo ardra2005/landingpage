@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Gift 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4e9 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            transform: rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            transform: rotateY(180deg);
+            color: white;
+        }
+
+        h1 {
+            color: #e84a5f;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .hearts-container {
+            position: relative;
+            height: 150px;
+            margin: 30px 0;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            color: #e84a5f;
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart:nth-child(1) { left: 20px; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 80px; animation-delay: 0.5s; }
+        .heart:nth-child(3) { left: 140px; animation-delay: 1s; }
+        .heart:nth-child(4) { left: 200px; animation-delay: 1.5s; }
+        .heart:nth-child(5) { left: 260px; animation-delay: 2s; }
+        .heart:nth-child(6) { left: 320px; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0; }
+            50% { transform: translateY(-50px); opacity: 1; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 20px; left: 50px; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 100px; right: 30px; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 50px; left: 80px; animation-delay: 1s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .message.back {
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .button {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #e84a5f;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(232, 74, 95, 0.4);
+        }
+
+        .button:hover {
+            background: #d63a50;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(232, 74, 95, 0.6);
+        }
+
+        .instruction {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            pointer-events: none;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) translateX(var(--tx));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="card">
+            <div class="card-front">
+                <h1>💝</h1>
+                <div class="hearts-container">
+                    <div class="heart">❤️</div>
+                    <div class="heart">❤️</div>
+                    <div class="heart">❤️</div>
+                    <div class="heart">❤️</div>
+                    <div class="heart">❤️</div>
+                    <div class="heart">❤️</div>
+                </div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <h1>Happy Valentine's Day!</h1>
+                <p class="message">Click the card to open your gift 🎁</p>
+                <p class="instruction">→ Flip me over ←</p>
+            </div>
+            <div class="card-back">
+                <h1>💌</h1>
+                <p class="message back">You make every day special</p>
+                <p class="message back" style="font-size: 2em; margin: 20px 0;">From your code to your heart</p>
+                <button class="button" onclick="closeCard()">Close Card</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('card');
+        let isFlipped = false;
+
+        card.addEventListener('click', function() {
+            isFlipped = !isFlipped;
+            card.classList.toggle('flipped');
+            
+            if (isFlipped) {
+                createConfetti();
+            }
+        });
+
+        function createConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = ['#ff6b9d', '#e84a5f', '#ffd700', '#ff69b4'][Math.floor(Math.random() * 4)];
+                confetti.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function closeCard() {
+            card.classList.remove('flipped');
+            isFlipped = false;
+        }
+    </script>
+</body>
+</html>
